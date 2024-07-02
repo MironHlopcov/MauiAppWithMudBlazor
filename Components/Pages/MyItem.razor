@@ -1,0 +1,25 @@
+<MudPaper class="d-flex flex-grow-1 gap-1" Elevation="1">
+    <MudPaper Class="flex-none d-flex " Height="64px" Width="40px" Elevation="0">
+        <MudIcon Class="item-icon" Icon="@Icons.Material.Filled.Payment" Size="Size.Large" />
+    </MudPaper>
+    <MudPaper Class="d-flex flex-wrap flex-grow-1 gap-4 " Height="64px" MinWidth="120px" Elevation="0">
+        <div style="display: flex; flex-direction: column;">
+            <p class="item-title">@ItemTitle</p>
+            <p class="item-label">Вторая строка, которая переносится максимум на две строки sdhf askdjfhkajsdh fkajsdhfk</p>
+        </div>
+    </MudPaper>
+    <MudPaper Class="flex-none d-flex flex-auto" Height="64px" Width="103px" Elevation="0">
+        <div style="display: flex; flex-direction: column;">
+            <p class="info-title">+126,76 млн.</p>
+            <p class="info-label">12.10.2023</p>
+        </div>
+    </MudPaper>
+</MudPaper>
+
+@code {
+    [Parameter] public string Icon { get; set; } = string.Empty;
+    [Parameter] public string ItemTitle { get; set; } = string.Empty;
+    [Parameter] public string ItemLabel { get; set; } = string.Empty;
+    [Parameter] public string infoTitle { get; set; } = string.Empty;
+    [Parameter] public string infoLabel { get; set; } = string.Empty;
+}

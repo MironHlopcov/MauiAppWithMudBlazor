@@ -1,0 +1,58 @@
+﻿@page "/"
+
+<MudLayout>
+   
+    <MudAppBar Elevation="1" Style="top: 56px; bottom: auto" Dense="true" Fixed="true">
+        <MudGrid Justify="Justify.Center">
+            <MudText Style="font-size:small">asdfasdfasdfasdf</MudText>
+        </MudGrid>
+    </MudAppBar>
+    <MudMainContent>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+                        <MudLayout><MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem></MudLayout>
+        
+    </MudMainContent>
+  
+</MudLayout>
+
+
+
+
+
+@code{
+
+    string itemTitle = "Первая строка, которая не переносится";
+    string itemLabel = "Вторая строка, которая переносится максимум на две строчки";
+    string infoTitle = "+234,32 млн.";
+    string infolabel = "10.10.2032";
+
+    string icon = "@Icons.Material.Filled.Payment";
+
+
+
+
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+}

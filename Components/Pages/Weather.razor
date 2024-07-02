@@ -1,0 +1,130 @@
+﻿@page "/weather"
+
+<style>
+    .mud-tabs-toolbar {
+        margin-top: 1px;
+        top: 46px;
+        z-index: 1;
+    }
+</style>
+
+@if (forecasts == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <MudTabs KeepPanelsAlive="true" Position="Position.Top" Elevation="0">
+        <MudTabPanel Text="Tab One" Style="width:100%">
+            <MudPaper id="unique_id_scroll_section" class="d-flex flex-column paper-scrollbar" style="height:calc(100vh - 98px); overflow-y:auto; /* scrollbar-width:none */ ; ">
+                <MudTable T="WeatherForecast" Items="forecasts" Virtualize="true" Hover="true" SortLabel="Sort By" Elevation="0" OnRowClick="RowClickEvent">
+                    <RowTemplate>
+                        <MyItem Icon="@icon" ItemTitle="@itemTitle" ItemLabel="@itemLabel" infoTitle="@infoTitle" infoLabel="@infolabel">  </MyItem>
+                        <MudDivider />
+                    </RowTemplate>
+                </MudTable>
+                <MudScrollToTop TopOffset="100"
+                                OnScroll="OnScroll"
+                                Selector="#unique_id_scroll_section"
+                                VisibleCssClass="visible absolute"
+                                HiddenCssClass="invisible">
+                    <span class="mud-scroll-to-top @scrolVisible" style="z-index:2000;">
+                        <button type="button" class="mud-button-root mud-fab mud-fab-primary mud-fab-size-large mud-ripple" _bl_3="">
+                            <span class="mud-fab-label">
+                                <svg class="mud-icon-root mud-svg-icon mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z">
+                                    </path>
+                                </svg>
+                            </span>
+                        </button>
+                    </span>
+                </MudScrollToTop>
+            </MudPaper>
+        </MudTabPanel>
+        <MudTabPanel Text="Tab Two">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+                        <MudList Clickable="true" style="width: 100%;">
+                            <Virtualize Items="forecasts" Context="forecast" OverscanCount="50">
+                                <MudListItem Icon="@Icons.Material.Filled.Inbox">
+                                    <td>@forecast.Date.ToShortDateString()</td>
+                                    <td>@forecast.TemperatureC</td>
+                                    <td>@forecast.TemperatureF</td>
+                                    <td>@forecast.Summary</td>
+                                </MudListItem>
+                            </Virtualize>
+                        </MudList>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudTabPanel>
+        <MudTabPanel Text="Tab Three">
+            <MudText>Content Three</MudText>
+        </MudTabPanel>
+        <MudTabPanel Text="Tab Three">
+            <MudText>Content Three</MudText>
+        </MudTabPanel>
+        <MudTabPanel Text="Tab Three">
+            <MudText>Content Three</MudText>
+        </MudTabPanel>
+        <MudTabPanel Text="Tab Three">
+            <MudText>Content Three</MudText>
+        </MudTabPanel>
+        <MudTabPanel Text="Tab Three">
+            <MudText>Content Three</MudText>
+        </MudTabPanel>
+
+    </MudTabs>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+    private void RowClickEvent(TableRowClickEventArgs<WeatherForecast> tableRowClickEventArgs)
+    {
+
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate a loading indicator
+        await Task.Delay(500);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 500).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = summaries[Random.Shared.Next(summaries.Length)]
+            }).ToArray();
+    }
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+    string itemTitle = "Первая строка, которая не переносится";
+    string itemLabel = "Вторая строка, которая переносится максимум на две строчки";
+    string infoTitle = "+234,32 млн.";
+    string infolabel = "10.10.2032";
+
+    string icon = "@Icons.Material.Filled.Payment";
+
+
+    //scroll to top
+    string scrolVisible;
+    Color Color = Color.Success;
+    private void OnScroll(ScrollEventArgs e)
+    {
+        scrolVisible = (e.FirstChildBoundingClientRect.Top * -1) switch
+        {
+            var x when x < 500 => "hiden",
+            _ => "visible"
+        };
+    }
+}

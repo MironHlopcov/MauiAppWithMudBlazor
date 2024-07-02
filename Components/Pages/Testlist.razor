@@ -1,0 +1,79 @@
+﻿@page "/testlist"
+@using BlazorCastomUserAuthon.Shared
+
+<PageTitle>Weather forecast</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">Weather forecast</MudText>
+<MudText Class="mb-8">This component demonstrates fetching data from the server.</MudText>
+@if (FilesInS3 == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+
+    <table class="table table-striped mt-5">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Размер (байт)</th>
+                <th scope="col">Дата изменения</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody class="table">
+            @foreach (var file in FilesInS3)
+            {
+                if (file.Key.Contains("/"))
+                    continue;
+                <tr>
+                    <th scope="col">@file.Key</th>
+                    <th scope="col">@file.Size</th>
+                    <th scope="col">@file.LastModified</th>
+                    @*  <button @onclick="() => DownloadFile(file.Key)" class="link-success">Скачать</button>
+            <button @onclick="() => PutToArhive(file.Key)" disabled="@IsArchiveButtonDisabled">Архивировать</button> *@
+                    <button  class="link-success">Скачать</button>
+                    <button  >Архивировать</button>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
+}
+
+@code {
+    private Files[]? FilesInS3;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate a loading indicator
+        await Task.Delay(500);
+
+        var startDate = DateTime.Now;
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        FilesInS3 = Enumerable.Range(1, 5000).Select(index => new Files
+            {
+                LastModified = startDate.AddDays(index),
+                Size = Random.Shared.Next(100, 5343455),
+                Key = summaries[Random.Shared.Next(summaries.Length)]
+            }).ToArray();
+    }
+
+
+
+
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}
